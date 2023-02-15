@@ -64,6 +64,13 @@ input[type="submit"]:hover {
   width: 80%;
   height: 60%;
   border: 1px solid black;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3px;
+}
+.squarre p {
+  margin-right: 5px;
 }
 .text-input {
   width: 80%;

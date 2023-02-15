@@ -12,37 +12,38 @@
       <div class="content" id="place">
         <div class="card" id="first_card">
           <div class="squarre"></div>
-          <button>Hello World</button>
+          <button id="hello">Hello World</button>
           <div class="text-input">
             <input
               type="text"
               name="custom-input"
-              id="custom-input"
+              id="customInput"
               placeholder="ici du texte"
             />
-            <input type="submit" value="Custom" />
+            <input type="submit" value="Custom" id="customShow" />
           </div>
         </div>
         <div class="card" id="sec_card">
           <div class="row-btn">
-            <button class="btn-red">Red</button>
-            <button class="btn-green">Green</button>
-            <button class="btn-blue">Blue</button>
+            <button class="btn-red" id="redOne">Red</button>
+            <button class="btn-green" id="greenOne">Green</button>
+            <button class="btn-blue" id="blueOne">Blue</button>
           </div>
           <div class="row-btn">
-            <button>Toggle</button>
+            <button id="toggle">Toggle</button>
           </div>
           <div class="row-btn">
-            <button class="btn-rainbow">Rainbow</button>
+            <button class="btn-rainbow" id="rainbow">Rainbow</button>
           </div>
           <div class="row-btn">
-            <label for="border-widt">Border width</label>
+            <label for="borderWidth">Border width</label>
             <input
               type="range"
-              name="border-width"
-              id="border-widt"
-              min="0"
+              name="borderWidth"
+              id="borderWidth"
+              min="1"
               max="10"
+              value="1"
             />
           </div>
         </div>
