@@ -45,7 +45,8 @@ body {
   align-items: center;
   padding: 5px;
 }
-button {
+button,
+input[type="submit"] {
   width: 50%;
   height: 35px;
   border: 1px solid transparent;
@@ -54,7 +55,49 @@ button {
   cursor: pointer;
   transition: all 1s ease;
 }
-button:hover {
+button:hover,
+input[type="submit"]:hover {
   background-color: hsl(6, 93%, 71%);
   transform: scale(1.1);
+}
+.squarre {
+  width: 80%;
+  height: 60%;
+  border: 1px solid black;
+}
+.text-input {
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.text-input input[type="text"] {
+  width: 60%;
+}
+.row-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.row-btn button {
+  margin: 1px;
+}
+.btn-red,
+.btn-red:hover {
+  border-color: hsl(0, 80%, 50%);
+  background-color: hsl(0, 80%, 75%);
+}
+.btn-green,
+.btn-green:hover {
+  border-color: hsl(120, 80%, 50%);
+  background-color: hsl(120, 80%, 75%);
+}
+.btn-blue,
+.btn-blue:hover {
+  border-color: hsl(240, 80%, 50%);
+  background-color: hsl(240, 80%, 75%);
+}
+.btn-rainbow,
+.btn-rainbow:hover {
+  border-color: hsl(39, 100%, 50%);
+  background-color: hsl(39, 100%, 75%);
 }

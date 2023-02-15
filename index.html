@@ -10,8 +10,42 @@
   <body>
     <div class="container">
       <div class="content" id="place">
-        <div class="card" id="first_card"></div>
-        <div class="card" id="sec_card"></div>
+        <div class="card" id="first_card">
+          <div class="squarre"></div>
+          <button>Hello World</button>
+          <div class="text-input">
+            <input
+              type="text"
+              name="custom-input"
+              id="custom-input"
+              placeholder="ici du texte"
+            />
+            <input type="submit" value="Custom" />
+          </div>
+        </div>
+        <div class="card" id="sec_card">
+          <div class="row-btn">
+            <button class="btn-red">Red</button>
+            <button class="btn-green">Green</button>
+            <button class="btn-blue">Blue</button>
+          </div>
+          <div class="row-btn">
+            <button>Toggle</button>
+          </div>
+          <div class="row-btn">
+            <button class="btn-rainbow">Rainbow</button>
+          </div>
+          <div class="row-btn">
+            <label for="border-widt">Border width</label>
+            <input
+              type="range"
+              name="border-width"
+              id="border-widt"
+              min="0"
+              max="10"
+            />
+          </div>
+        </div>
         <div class="card" id="third_card"></div>
         <div class="card" id="fourth_card"></div>
       </div>
