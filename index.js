@@ -28,7 +28,7 @@ function btnToggle() {
   squarre.style.background = colorBg;
   indexToggle++;
   indexToggle > 1 ? (indexToggle = 0) : null;
-  console.log(colorBg);
+  // console.log(colorBg);
   return colorBg;
 }
 // *Rainbow function
@@ -147,3 +147,40 @@ inputBorderWidth.addEventListener("change", inputValue);
 hello.addEventListener("click", helloEvery);
 customShow.addEventListener("click", showTextContent);
 // console.log(redBg);
+
+// !---------------------------------------------
+// *Part 2
+// *
+const firstFruit = document.getElementById("firstFruit");
+const secFruit = document.getElementById("secondFruit");
+const thirdFruit = document.getElementById("thirdFruit");
+
+const fruits = document.querySelectorAll(".fruit");
+// console.log(fruits);
+
+const list = document.getElementById("list");
+// console.log(list);
+// console.log(firstFruit, secFruit, thirdFruit);
+var children;
+var index = 0;
+var key;
+var fruit;
+
+function addFruit(fruitAdd) {
+  // console.log(fruit);
+  children = fruitAdd;
+  key = fruitAdd + index;
+  fruit = `<li id='${key}'>${children}</li>`;
+  return fruit;
+}
+// for (let el in fruits) {
+//   console.log(el);
+//   // el.addEventListener("click", addFruit);
+// }
+fruits.forEach((e) => {
+  // console.log(e);
+  e.addEventListener("click", (el) => {
+    // console.log(e.target.innerText);
+    list.innerHTML += addFruit(el.target.innerText);
+  });
+});
