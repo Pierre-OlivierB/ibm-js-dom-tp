@@ -165,11 +165,19 @@ var children;
 var index = 0;
 var key;
 var fruit;
+var package = new Array();
 
 function addFruit(fruitAdd) {
   // console.log(fruit);
   children = fruitAdd;
   key = fruitAdd + index;
+  for (let i = 0; i < package.length; i++) {
+    if (package[i] == undefined) {
+      package.push(children);
+      // *had to debug the find function
+      console.log(package);
+    }
+  }
   fruit = `<li id='${key}'>${children}</li>`;
   return fruit;
 }
