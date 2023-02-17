@@ -166,20 +166,51 @@ var index = 0;
 var key;
 var fruit;
 var package = new Array();
+var packageIndex = new Array();
+packageIndex = [0, 0, 0];
+var listPackage;
+var listPackageBtn;
+var flag = false;
+var flagIndex = 0;
+// console.log(listPackage);
 
-function addFruit(fruitAdd) {
-  // console.log(fruit);
-  children = fruitAdd;
-  key = fruitAdd + index;
+function verifExist(e) {
+  if (index > 0) {
+    listPackage = document.querySelectorAll("span");
+  }
+  children = e;
   for (let i = 0; i < package.length; i++) {
-    if (package[i] == undefined) {
-      package.push(children);
-      // *had to debug the find function
-      console.log(package);
+    if (package[i] === children) {
+      flag = true;
+      flagIndex = i;
     }
   }
-  fruit = `<li id='${key}'>${children}</li>`;
-  return fruit;
+}
+
+function addFruit(fruitAdd) {
+  verifExist(fruitAdd);
+  if (flag == true) {
+    key = fruitAdd;
+    packageIndex[flagIndex] = packageIndex[flagIndex] + 1;
+    listPackage[flagIndex].textContent = "";
+    flag = false;
+    return (listPackage[flagIndex].textContent = " " + packageIndex[flagIndex]);
+  }
+  package.push(children);
+  key = fruitAdd;
+  fruit = `<li>${children}<span id='${key}'> 0</span> <button id='${children}'>X</button></li>`;
+  index++;
+  return (list.innerHTML += fruit);
+}
+function addListeners() {
+  listPackageBtn = document.querySelectorAll("span>button");
+  console.log(listPackageBtn);
+  listPackageBtn.forEach((el) => {
+    el.addEventListener("click", () => {
+      // .style.display = "none";
+      console.log(e);
+    });
+  });
 }
 // for (let el in fruits) {
 //   console.log(el);
@@ -189,6 +220,10 @@ fruits.forEach((e) => {
   // console.log(e);
   e.addEventListener("click", (el) => {
     // console.log(e.target.innerText);
-    list.innerHTML += addFruit(el.target.innerText);
+    addFruit(el.target.innerText);
   });
 });
+
+// !-------------------
+// TODO:
+// * add listerner on click btn supr
