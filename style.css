@@ -138,3 +138,10 @@ input[type="submit"]:hover {
 #list li button {
   max-width: 50px;
 }
+.fruit ul {
+  display: flex;
+  list-style: none;
+}
+/* .fruits ul li {
+  margin-right: 5px !important;
+} */

@@ -175,6 +175,11 @@ var flagIndex = 0;
 var deleteBtn;
 var listItems;
 var svgItems = new Array();
+var prices = new Array();
+
+const toPay = document.getElementById("toPay");
+var total;
+var totalCalc = 0;
 // console.log(listPackage);
 function deleteBtnAction() {
   deleteBtn = document.querySelectorAll("#list button");
@@ -187,22 +192,30 @@ function deleteBtnAction() {
   for (let k = 0; k < listItems.length; k++) {
     deleteBtn[k].addEventListener("click", () => {
       // console.log(svgItems);
+      let calc = packageIndex[k] * prices[k];
+      totalCalc -= calc;
+      total = `<p class='total'> Total : ${totalCalc}€<p>`;
+      toPay.innerHTML = total;
       svgItems.splice(k, 1);
       // *Need reset all info
       index--;
       package.splice(k, 1);
       packageIndex.splice(k, 1);
-      packageIndex.push(0);
+      prices.splice(k, 1);
+      // console.log(prices);
       // console.log(index, package, packageIndex);
       // *-------------------------
       list.innerHTML = "";
       if (svgItems.length > 0) {
         for (let j = 0; j < svgItems.length; j++) {
           console.log("render");
-          console.log(svgItems[j]);
+          // console.log(svgItems[j]);
           list.innerHTML += svgItems[j].outerHTML;
         }
         return deleteBtnAction();
+      }
+      if (index === 0) {
+        toPay.innerHTML = "";
       }
       return deleteBtnAction();
     });
@@ -228,26 +241,47 @@ function verifExist(e) {
   }
 }
 
-function addFruit(fruitAdd) {
+function addFruit(fruitAdd, price) {
   verifExist(fruitAdd);
   key = fruitAdd;
   if (flag == true) {
+    // console.log(packageIndex);
     packageIndex[flagIndex] = packageIndex[flagIndex] + 1;
     listPackage[flagIndex].textContent = "";
     flag = false;
-    return (listPackage[flagIndex].textContent = " " + packageIndex[flagIndex]);
+    let calc = packageIndex[flagIndex] * prices[flagIndex];
+    totalCalc += prices[flagIndex];
+    total = `<p class='total'> Total : ${totalCalc}€<p>`;
+
+    toPay.innerHTML = total;
+    return (listPackage[flagIndex].textContent =
+      " " +
+      packageIndex[flagIndex] +
+      " x " +
+      prices[flagIndex] +
+      "€ = " +
+      calc +
+      "€.");
   }
   package.push(children);
   packageIndex.push(1);
-  fruit = `<li>${children}<span id='${key}'> 1</span> <button>X</button></li>`;
+  // console.log(packageIndex);
+  fruit = `<li>${children}<span id='${key}'> 1 x ${price}€ = ${price}€</span> <button>X</button></li>`;
   index++;
   list.innerHTML += fruit;
+  // console.log(price);
+  prices.push(price);
   deleteBtnAction();
+  let calc = packageIndex[index - 1] * prices[index - 1];
+  console.log(calc);
+  totalCalc += calc;
+  total = `<p class='total'> Total : ${totalCalc}€<p>`;
+  toPay.innerHTML = total;
   return;
 }
-function deleteLine(child) {
-  child.style.display = "none";
-}
+// function deleteLine(child) {
+//   child.style.display = "none";
+// }
 // for (let el in fruits) {
 //   console.log(el);
 //   // el.addEventListener("click", addFruit);
@@ -256,8 +290,13 @@ function start() {
   fruits.forEach((e) => {
     // console.log(e);
     e.addEventListener("click", (el) => {
-      // console.log(e.target.innerText);
-      addFruit(el.target.innerText);
+      // console.log(el.target.innerText.split(" "));
+      let nameTarget = el.target.innerText.split(" ");
+      let parcelsFruit = nameTarget.length - 1;
+      nameTarget.splice(parcelsFruit, 1);
+      let article = nameTarget.join(" ");
+      // console.log(el.target.value);
+      addFruit(article, el.target.value);
     });
   });
 }
