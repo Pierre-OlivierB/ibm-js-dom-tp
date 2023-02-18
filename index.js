@@ -172,11 +172,52 @@ var listPackage;
 var listPackageBtn;
 var flag = false;
 var flagIndex = 0;
+var deleteBtn;
+var listItems;
+var svgItems = new Array();
 // console.log(listPackage);
+function deleteBtnAction() {
+  deleteBtn = document.querySelectorAll("#list button");
+  listItems = document.querySelectorAll("#list li");
+  // console.log(listItems);
+  for (let i = 0; i < listItems.length; i++) {
+    // console.log(listItems);
+    svgItems[i] = listItems[i];
+  }
+  for (let k = 0; k < listItems.length; k++) {
+    deleteBtn[k].addEventListener("click", () => {
+      // console.log(svgItems);
+      svgItems.splice(k, 1);
+      // *Need reset all info
+      index--;
+      package.splice(k, 1);
+      packageIndex.splice(k, 1);
+      packageIndex.push(0);
+      // console.log(index, package, packageIndex);
+      // *-------------------------
+      list.innerHTML = "";
+      if (svgItems.length > 0) {
+        for (let j = 0; j < svgItems.length; j++) {
+          console.log("render");
+          console.log(svgItems[j]);
+          list.innerHTML += svgItems[j].outerHTML;
+        }
+        return;
+      }
+      return;
+    });
+  }
+}
 
 function verifExist(e) {
   if (index > 0) {
     listPackage = document.querySelectorAll("span");
+    // console.log(deleteBtn);
+    // deleteBtn.forEach((btn) => {
+    //   btn.addEventListener("click", (e) => {
+    //     console.log(e);
+    //   });
+    // });
   }
   children = e;
   for (let i = 0; i < package.length; i++) {
@@ -189,40 +230,37 @@ function verifExist(e) {
 
 function addFruit(fruitAdd) {
   verifExist(fruitAdd);
+  key = fruitAdd;
   if (flag == true) {
-    key = fruitAdd;
     packageIndex[flagIndex] = packageIndex[flagIndex] + 1;
     listPackage[flagIndex].textContent = "";
     flag = false;
     return (listPackage[flagIndex].textContent = " " + packageIndex[flagIndex]);
   }
   package.push(children);
-  key = fruitAdd;
-  fruit = `<li>${children}<span id='${key}'> 0</span> <button id='${children}'>X</button></li>`;
+  fruit = `<li>${children}<span id='${key}'> 0</span> <button>X</button></li>`;
   index++;
-  return (list.innerHTML += fruit);
+  list.innerHTML += fruit;
+  deleteBtnAction();
+  return;
 }
-function addListeners() {
-  listPackageBtn = document.querySelectorAll("span>button");
-  console.log(listPackageBtn);
-  listPackageBtn.forEach((el) => {
-    el.addEventListener("click", () => {
-      // .style.display = "none";
-      console.log(e);
-    });
-  });
+function deleteLine(child) {
+  child.style.display = "none";
 }
 // for (let el in fruits) {
 //   console.log(el);
 //   // el.addEventListener("click", addFruit);
 // }
-fruits.forEach((e) => {
-  // console.log(e);
-  e.addEventListener("click", (el) => {
-    // console.log(e.target.innerText);
-    addFruit(el.target.innerText);
+function start() {
+  fruits.forEach((e) => {
+    // console.log(e);
+    e.addEventListener("click", (el) => {
+      // console.log(e.target.innerText);
+      addFruit(el.target.innerText);
+    });
   });
-});
+}
+start();
 
 // !-------------------
 // TODO:
