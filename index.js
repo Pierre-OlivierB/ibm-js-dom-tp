@@ -167,7 +167,7 @@ var key;
 var fruit;
 var package = new Array();
 var packageIndex = new Array();
-packageIndex = [0, 0, 0];
+// packageIndex = [0, 0, 0];
 var listPackage;
 var listPackageBtn;
 var flag = false;
@@ -202,9 +202,9 @@ function deleteBtnAction() {
           console.log(svgItems[j]);
           list.innerHTML += svgItems[j].outerHTML;
         }
-        return;
+        return deleteBtnAction();
       }
-      return;
+      return deleteBtnAction();
     });
   }
 }
@@ -238,7 +238,8 @@ function addFruit(fruitAdd) {
     return (listPackage[flagIndex].textContent = " " + packageIndex[flagIndex]);
   }
   package.push(children);
-  fruit = `<li>${children}<span id='${key}'> 0</span> <button>X</button></li>`;
+  packageIndex.push(1);
+  fruit = `<li>${children}<span id='${key}'> 1</span> <button>X</button></li>`;
   index++;
   list.innerHTML += fruit;
   deleteBtnAction();
